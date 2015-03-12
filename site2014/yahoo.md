@@ -1,0 +1,15 @@
+雅虎的14条军规：
+1、尽可能减少http请求数
+2、使用CDN
+3、添加Expires头或者（Cache-control）
+4、Gzip
+5、CSS放头部
+6、JS放底部
+7、避免使用Expressions
+8、js、css独立成外部文件
+9、减少dns查询
+10、压缩js、css
+11、避免重定向
+12、删除重复脚本
+13、配置尸体标签ETags
+14、使用ajax缓存
