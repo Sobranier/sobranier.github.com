@@ -36,42 +36,53 @@
         <div class="edit-rightwrapper">
             <div class='panel panel-default'>
                 <div class='panel-heading'>
-                    <label>标题</label>
+                    <label>问卷标题</label>
                     <input placeholder="填写标题"/>
                 </div>
                 <div class='panel-body' style="height:100px;">
-                    <label>副标题</label>
-                    <textarea placeholder="填写标题"></textarea>
+                    <label>问卷描述</label>
+                    <textarea placeholder="填写描述"></textarea>
                 </div>
             </div>
             <ul class="sortnav" id="J-sortarea">
             </ul>
+
         </div>
     
     </div>
 </div>
+
+<style>
+    .fui-plus-circle{cursor:pointer;}
+</style>
+
+
 <script type="text/html" id="M-radio">
     <label class="radio">
-        <input type="radio" /><input type="text" placeholder="填写"/>
+        <input type="radio" /><input type="text" placeholder="填写选项" value="选项1"/>
     </label>
     <label class="radio">
-        <input type="radio" /><input type="text" placeholder="填写"/>
+        <input type="radio" /><input type="text" placeholder="填写选项" value="选项2"/>
     </label>
     <span class="fui-plus-circle"></span>
+    <p>这是一道单选题，请设置问题和选项</p>
 </script>
 <script type="text/html" id="M-checkbox">
     <label class="checkbox">
-        <input type="checkbox" /><input type="text" placeholder="填写"/>
+        <input type="checkbox" /><input type="text" placeholder="填写选项" value="选项1"/>
     </label>
     <label class="checkbox">
-        <input type="checkbox" /><input type="text" placeholder="填写"/>
+        <input type="checkbox" /><input type="text" placeholder="填写" value="选项2"/>
     </label>
     <span class="fui-plus-circle"></span>
+    <p>这是一道多选题，请设置问题和选项</p>
 </script>
 <script type="text/html" id="M-img-radio">
     <div class="img-area">
         <img src="../images/test/icon_tel.png" width=140 height=140/>
-        <input type="radio" class="img-radio"/>
+        <label class="radio">
+            <input type="radio" /><input type="text" placeholder="填写选项" value="选项1"/>
+        </label>
         
     </div>
     <div class="img-area uploader">
@@ -82,7 +93,9 @@
 <script type="text/html" id="M-img-checkbox">
     <div class="img-area">
         <img src="../images/test/icon_tel.png" width=140 height=140/>
-        <input type="checkbox" class="img-radio"/>
+        <label class="checkbox">
+            <input type="checkbox" /><input type="text" placeholder="填写选项" value="选项1"/>
+        </label>
         
     </div>
     <div class="img-area uploader">
@@ -91,17 +104,17 @@
     </div>
 </script>
 <script type="text/html" id="M-single-input">
-    <input type="text"/ >
+    <input type="text" disabled/ >
 </script>
 <script type="text/html" id="M-multi-input">
-    <label><input placeholder="选项一"</label>
-    <input type="text"/ >
-    <label><input placeholder="选项二"</label>
-    <input type="text"/ >
+    <label><input placeholder="选项一" type="text" value="选项" /></label>
+    <input type="text"/ disabled>
+    <label><input placeholder="选项二" type="text" value="选项" /></label>
+    <input type="text"/ disabled>
     <span class="fui-plus-circle"></span>
 </script>
 <script type="text/html" id="M-textarea">
-    <textarea></textarea>
+    <textarea disabled></textarea>
 </script>
 <script type="text/html" id="M-sort">
     <div class="sort-left">
@@ -124,31 +137,45 @@
     </div>
 </script>
 <script type="text/html" id="M-score">
-    <div class="score-area">
-        <span class="fui-star-2" style="color:grey"></span>
-        <span class="fui-star-2" style="color:grey"></span>
-        <span class="fui-star-2"></span>
-        <span class="fui-star-2"></span>
-        <span class="fui-star-2"></span>
-    </div>
+    <label class="score-area">
+        <input type="text" placeholder="填写选项" value="选项1" class="score-area-left"/>
+        <div class="score-area-right">
+            <span class="fui-star-2" style="color:grey"></span>
+            <span class="fui-star-2" style="color:grey"></span>
+            <span class="fui-star-2"></span>
+            <span class="fui-star-2"></span>
+            <span class="fui-star-2"></span>
+        </div>
+    </label>
+    <label class="score-area">
+        <input type="text" placeholder="填写选项" value="选项2" class="score-area-left"/>
+        <div class="score-area-right">
+            <span class="fui-star-2" style="color:grey"></span>
+            <span class="fui-star-2" style="color:grey"></span>
+            <span class="fui-star-2"></span>
+            <span class="fui-star-2"></span>
+            <span class="fui-star-2"></span>
+        </div>
+    </label>
+
 </script>
 <script type="text/html" id="M-matrix-radio">
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th></th>
-                <th>选项一</th>
-                <th>选项二</th>
+                <th><input type="text" placeholder="填写选项" value="选项一" /></th>
+                <th><input type="text" placeholder="填写选项" value="选项二" /></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>矩阵行一</td>
+                <td><input type="text" placeholder="填写行名" value="行名" /></td>
                 <td><input type="radio"/ ></td>
                 <td><input type="radio"/ ></td>
             </tr>
             <tr>
-                <td>矩阵行一</td>
+                <td><input type="text" placeholder="填写行名" value="行名" /></td>
                 <td><input type="radio"/ ></td>
                 <td><input type="radio"/ ></td>
             </tr>
@@ -160,18 +187,18 @@
         <thead>
             <tr>
                 <th></th>
-                <th>选项一</th>
-                <th>选项二</th>
+                <th><input type="text" placeholder="填写选项" value="选项一" /></th>
+                <th><input type="text" placeholder="填写选项" value="选项二" /></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>矩阵行一</td>
+                <td><input type="text" placeholder="填写行名" value="行名" /></td>
                 <td><input type="checkbox"/ ></td>
                 <td><input type="checkbox"/ ></td>
             </tr>
             <tr>
-                <td>矩阵行一</td>
+                <td><input type="text" placeholder="填写行名" value="行名" /></td>
                 <td><input type="checkbox"/ ></td>
                 <td><input type="checkbox"/ ></td>
             </tr>
@@ -183,20 +210,20 @@
         <thead>
             <tr>
                 <th></th>
-                <th>选项一</th>
-                <th>选项二</th>
+                <th><input type="text" placeholder="填写选项" value="选项一" /></th>
+                <th><input type="text" placeholder="填写选项" value="选项二" /></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>矩阵行一</td>
-                <td><input type="text"/ ></td>
-                <td><input type="text"/ ></td>
+                <td><input type="text" placeholder="填写行名" value="行名" /></td>
+                <td><input type="text" disabled /></td>
+                <td><input type="text" disabled /></td>
             </tr>
             <tr>
-                <td>矩阵行一</td>
-                <td><input type="text"/ ></td>
-                <td><input type="text"/ ></td>
+                <td><input type="text" placeholder="填写行名" value="行名" /></td>
+                <td><input type="text" disabled /></td>
+                <td><input type="text" disabled /></td>
             </tr>
         </tbody>
     </table>
@@ -209,7 +236,7 @@
     <div class='panel panel-default'>
         <div class='panel-heading'>
             <span class="J-order"></span>
-            <input placeholder="填写标题"/>
+            <input type="text" placeholder="填写标题" name="title" value="填写标题"/>
             <div class="fr action-area">
                 <span class="fui-triangle-up"></span>    
                 <span class="fui-triangle-down"></span>    
@@ -223,14 +250,7 @@
 
 <script>
 $(function() {
-    $('#J-sortarea').sortable({
-        handle: ".panel-heading",
-        cursor: "move",
-        revert: true,
-        stop: function(event, ui){
-            resort('#J-sortarea');
-        }
-    });
+    /*左侧拖拉*/
     $('#J-draggnav li').draggable({
         connectToSortable: '#J-sortarea',
         addClasses: false,
@@ -239,26 +259,47 @@ $(function() {
         revert: 'invalid',
         stop: function(event, ui){
             rebuild('#J-sortarea');
+            //resort('#J-sortarea');
+        }
+    });
+    /*右侧排序*/
+    $('#J-sortarea').sortable({
+        handle: ".panel-heading",
+        cursor: "move",
+        revert: true,
+        stop: function(event, ui){
             resort('#J-sortarea');
         }
     });
+
+
+    /*重建右侧*/
     function rebuild(id) {
         $(id).children('li').each(function() {
-            if ($(this).attr('data-type') && $(this).attr('data-change')) {
-                console.log($(this).attr('data-type')); 
+            // 遍历子节点，转化刚刚加入的项目
+            if ($(this).attr('data-type') && $(this).attr('data-change') == 'true') {
                 $(this).attr('data-change', false);
                 switchbuild($(this));
            }
         });
     }
+
+
+    /*右侧序列生成*/
     function resort(id) {
-        var count = 1;
+        var count = 1,
+            order_list = [];
         $(id).children('li').each(function() {
             if ($(this).attr('data-type')) {
+                order_list.push($(this).attr('id'));
                 $(this).find('.J-order').html('Q' + count++);
-           }
+            }
         });
+        // 每次操作以后输出序列顺序
+        console.log('发送序列顺序:' + order_list);
     }
+
+    /*节点转化*/
     function switchbuild(node) {
         var type = node.attr('data-type'),
             d = new Date().getTime();
@@ -270,7 +311,64 @@ $(function() {
         node.append(pannel);
         node.css('width', '100%');
         node.css('height', '');
+
+        // 标题处自动获取焦点
+        //node.find('.panel-heading input').focus();
+
+
+
+
+
+        console.log('新添加项目:' + node.attr('data-type') + ' id:' + node.attr('id')); 
     }
+
+
+    $("#J-sortarea").delegate(".fui-triangle-up","click",function(e){
+        var node = $(this).parents('li'),
+            node_prev = node.prev(),
+            id = node.attr('id');
+
+        node.insertBefore(node_prev);
+
+        resort('#J-sortarea');
+        console.log('------' + id + '向上调整');
+    });
+
+
+    $("#J-sortarea").delegate(".fui-triangle-down","click",function(e){
+        var node = $(this).parents('li'),
+            node_next = node.next(),
+            id = node.attr('id');
+
+        node.insertAfter(node_next);
+
+        resort('#J-sortarea');
+        console.log('------' + id + '向下调整');
+    });
+    $("#J-sortarea").delegate(".fui-trash","click",function(e){
+        var node = $(this).parents('li'),
+        id = node.attr('id');
+        node.remove();
+
+        resort('#J-sortarea');
+        console.log('------' + id + '删除');
+    });
+
+
+    $('#J-sortarea').on('focusin focusout', 'input[type="text"]', function(event){
+        var node = $(this).parents('li');
+        var id = node.attr('id');
+        if(event.type === 'focusin'){
+            $(this).css('background-color', 'yellow');
+            //default_input_value = jQuery(this).val();
+            //jQuery(this).val('');
+            console.log('+++++++ 进入');
+        }else if(event.type === 'focusout'){
+            $(this).css('background-color', 'white');
+            console.log('+++++++ 离开 +++++++ 修改 id:' + id + '下input ' + $(this).attr('name') +  '值为' + $(this).val());
+        }
+    });
+
 });
 </script>
 </body>

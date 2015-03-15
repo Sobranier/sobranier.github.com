@@ -28,19 +28,40 @@
         display:inline-block;width:20px;margin-right:10px;
     }
 }
-.sortnav {padding:10px;}
+.sortnav {
+    padding:10px;
+}
 
 .action-area>span{cursor:pointer;}
 .img-area {
-    float:left;margin-right:10px;margin-bottom:10px;width:150px;height:170px;border:1px solid #eee;
+    float:left;margin-right:10px;margin-bottom:10px;width:150px;height:180px;border:1px solid #eee;
     img{
         width:140px;height:140px;margin:0 auto;
     }
-    .img-radio, .img-checkbox {
-        margin-left:68px;
+    .radio, .checkbox {
+        input[type="text"] {
+            line-height:12px;
+            width:100px;
+        }
     }
 }
 
+.sort-left {
+    float:left;
+}
+.sort-right {
+    margin-left:200px;
+}
+
+.score-area {
+    display:block;
+    .score-area-left {
+        float:left;
+    }
+    .score-area-right {
+        margin-left:200px;
+    }
+}
 
 .uploader {
     position:relative;
