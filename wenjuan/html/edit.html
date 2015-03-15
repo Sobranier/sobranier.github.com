@@ -64,7 +64,7 @@
     <label class="radio">
         <input type="radio" /><input type="text" placeholder="填写选项" value="选项2"/>
     </label>
-    <span class="fui-plus-circle"></span>
+    <span class="fui-plus-circle J-plus"></span>
     <p>这是一道单选题，请设置问题和选项</p>
 </script>
 <script type="text/html" id="M-checkbox">
@@ -74,7 +74,7 @@
     <label class="checkbox">
         <input type="checkbox" /><input type="text" placeholder="填写" value="选项2"/>
     </label>
-    <span class="fui-plus-circle"></span>
+    <span class="fui-plus-circle J-plus"></span>
     <p>这是一道多选题，请设置问题和选项</p>
 </script>
 <script type="text/html" id="M-img-radio">
@@ -104,22 +104,26 @@
     </div>
 </script>
 <script type="text/html" id="M-single-input">
-    <input type="text" disabled/ >
+    <input type="aee" disabled/>
 </script>
 <script type="text/html" id="M-multi-input">
-    <label><input placeholder="选项一" type="text" value="选项" /></label>
-    <input type="text"/ disabled>
-    <label><input placeholder="选项二" type="text" value="选项" /></label>
-    <input type="text"/ disabled>
-    <span class="fui-plus-circle"></span>
+    <label>
+        <input placeholder="选项一" type="text" value="选项" />
+        <input type="aee" disabled/>
+    </label>
+    <label>
+        <input placeholder="选项二" type="text" value="选项" />
+        <input type="aee" disabled/>
+    </label>
+    <span class="fui-plus-circle J-plus"></span>
 </script>
 <script type="text/html" id="M-textarea">
     <textarea disabled></textarea>
 </script>
 <script type="text/html" id="M-sort">
     <div class="sort-left">
-        <div><input placeholder="选项1"/></div>
-        <div><input placeholder="选项2"/></div>
+        <div><input placeholder="选项1" type="text"/></div>
+        <div><input placeholder="选项2" type="text"/></div>
     </div>
     <div class="sort-right">
         <table class="table table-bordered">
@@ -132,9 +136,15 @@
                     <td>2</td>
                     <td>...</td>
                 </tr>
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
             </tbody>
         </table>
     </div>
+
+    <span class="fui-plus-circle J-plus"></span>
 </script>
 <script type="text/html" id="M-score">
     <label class="score-area">
@@ -158,6 +168,7 @@
         </div>
     </label>
 
+    <span class="fui-plus-circle J-plus"></span>
 </script>
 <script type="text/html" id="M-matrix-radio">
     <table class="table table-bordered">
@@ -179,6 +190,7 @@
                 <td><input type="radio"/ ></td>
                 <td><input type="radio"/ ></td>
             </tr>
+
         </tbody>
     </table>
 </script>
@@ -217,13 +229,13 @@
         <tbody>
             <tr>
                 <td><input type="text" placeholder="填写行名" value="行名" /></td>
-                <td><input type="text" disabled /></td>
-                <td><input type="text" disabled /></td>
+                <td><input type="aee" disabled /></td>
+                <td><input type="aee" disabled /></td>
             </tr>
             <tr>
                 <td><input type="text" placeholder="填写行名" value="行名" /></td>
-                <td><input type="text" disabled /></td>
-                <td><input type="text" disabled /></td>
+                <td><input type="aee" disabled /></td>
+                <td><input type="aee" disabled /></td>
             </tr>
         </tbody>
     </table>
@@ -259,9 +271,16 @@ $(function() {
         revert: 'invalid',
         stop: function(event, ui){
             rebuild('#J-sortarea');
-            //resort('#J-sortarea');
         }
     });
+
+    $("#J-draggnav").delegate("li","click",function(){
+        $('#J-sortarea').append($(this).clone());
+        rebuild('#J-sortarea');
+        resort('#J-sortarea');
+        $('body').animate({scrollTop: $('#J-sortarea').height()}, 500);
+    });
+
     /*右侧排序*/
     $('#J-sortarea').sortable({
         handle: ".panel-heading",
@@ -323,7 +342,7 @@ $(function() {
     }
 
 
-    $("#J-sortarea").delegate(".fui-triangle-up","click",function(e){
+    $("#J-sortarea").delegate(".fui-triangle-up","click",function(){
         var node = $(this).parents('li'),
             node_prev = node.prev(),
             id = node.attr('id');
@@ -335,7 +354,7 @@ $(function() {
     });
 
 
-    $("#J-sortarea").delegate(".fui-triangle-down","click",function(e){
+    $("#J-sortarea").delegate(".fui-triangle-down","click",function(){
         var node = $(this).parents('li'),
             node_next = node.next(),
             id = node.attr('id');
@@ -345,7 +364,8 @@ $(function() {
         resort('#J-sortarea');
         console.log('------' + id + '向下调整');
     });
-    $("#J-sortarea").delegate(".fui-trash","click",function(e){
+
+    $("#J-sortarea").delegate(".fui-trash","click",function(){
         var node = $(this).parents('li'),
         id = node.attr('id');
         node.remove();
@@ -367,6 +387,28 @@ $(function() {
             $(this).css('background-color', 'white');
             console.log('+++++++ 离开 +++++++ 修改 id:' + id + '下input ' + $(this).attr('name') +  '值为' + $(this).val());
         }
+    });
+
+    $("#J-sortarea").delegate(".J-plus","click",function(){
+        var node = $(this).parents('li'),
+        id = node.attr('id');
+
+        if (node.attr('data-type') == 'sort') {
+            var par = node.find('.sort-left');
+            par.append(par.children().last().clone());
+            par.children().last().find('input[type=text]').val('选项');
+            
+        } else {
+            $($(this).prev().clone()).insertBefore($(this));
+            $(this).prev().find('input[type=text]').val('选项');
+        }
+
+
+
+
+
+
+        console.log('------' + id + '添加项目');
     });
 
 });

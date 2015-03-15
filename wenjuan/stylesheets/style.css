@@ -852,6 +852,8 @@
 .edit-leftwrapper {
   float: left;
   width: 168px;
+  position: fixed;
+  top: 0;
 }
 
 /* line 22, ../sass/style.scss */
@@ -881,13 +883,17 @@
 .sortnav {
   padding: 10px;
 }
+/* line 33, ../sass/style.scss */
+.sortnav .panel-body {
+  overflow-y: scroll;
+}
 
-/* line 35, ../sass/style.scss */
+/* line 38, ../sass/style.scss */
 .action-area > span {
   cursor: pointer;
 }
 
-/* line 36, ../sass/style.scss */
+/* line 39, ../sass/style.scss */
 .img-area {
   float: left;
   margin-right: 10px;
@@ -896,47 +902,47 @@
   height: 180px;
   border: 1px solid #eee;
 }
-/* line 38, ../sass/style.scss */
+/* line 41, ../sass/style.scss */
 .img-area img {
   width: 140px;
   height: 140px;
   margin: 0 auto;
 }
-/* line 42, ../sass/style.scss */
+/* line 45, ../sass/style.scss */
 .img-area .radio input[type="text"], .img-area .checkbox input[type="text"] {
   line-height: 12px;
   width: 100px;
 }
 
-/* line 49, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 .sort-left {
   float: left;
 }
 
-/* line 52, ../sass/style.scss */
+/* line 55, ../sass/style.scss */
 .sort-right {
   margin-left: 200px;
 }
 
-/* line 56, ../sass/style.scss */
+/* line 59, ../sass/style.scss */
 .score-area {
   display: block;
 }
-/* line 58, ../sass/style.scss */
+/* line 61, ../sass/style.scss */
 .score-area .score-area-left {
   float: left;
 }
-/* line 61, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 .score-area .score-area-right {
   margin-left: 200px;
 }
 
-/* line 66, ../sass/style.scss */
+/* line 69, ../sass/style.scss */
 .uploader {
   position: relative;
   border: 1px dashed #eee;
 }
-/* line 69, ../sass/style.scss */
+/* line 72, ../sass/style.scss */
 .uploader input {
   position: absolute;
   top: 0;
@@ -949,7 +955,7 @@
   filter: alpha(opacity=0);
   cursor: pointer;
 }
-/* line 80, ../sass/style.scss */
+/* line 83, ../sass/style.scss */
 .uploader .fui-image {
   position: absolute;
   display: block;
