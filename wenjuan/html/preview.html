@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>预览页</title>
+    <link rel='stylesheet' href='../stylesheets/vendor/bootstrap.css' />
+    <link rel='stylesheet' href='../stylesheets/vendor/flat-ui.css' />
+    <link rel='stylesheet' href='../stylesheets/vendor/font-awesome.css' />
+    <link rel='stylesheet' href='../stylesheets/style.css' />
+    <script src='../js/vendor/jquery.min.js'></script>
+    <script src='../js/vendor/jquery-ui.min.js'></script>
+    <script src='../js/vendor/handlebars-v3.0.0.js'></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="rol-sm-12" id="N-base">
+                <h1 class="J-pageheader"></h1>
+                <p class="J-pagedes"></p>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="N-radio">
+    <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        {{#each list}}
+        <label class="radio" for="radio{{index}}">
+            <input type="radio" name="optionsRadios1" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+            {{name}}
+        </label>
+        {{/each}}
+    </div>
+</script>
+<script type="text/html" id="N-checkbox">
+    <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        {{#each list}}
+        <label class="checkbox" for="checkbox{{index}}">
+            <input type="checkbox" value="" id="checkbox{{index}}" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+            {{name}}
+        </label>
+        {{/each}}
+    </div>
+</script>
+<script type="text/html" id="N-img-radio">
+    <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        {{#each list}}
+        <div class="img-area">
+            <img src="../images/test/icon_tel.png" width=140 height=140/>
+            <label class="radio" for="radio{{index}}">
+                <input type="radio" name="optionsRadios1" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                {{name}}
+            </label>
+        </div>
+        {{/each}}
+    </div>
+</script>
+<script type="text/html" id="N-img-checkbox">
+    <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        {{#each list}}
+        <div class="img-area">
+            <img src="../images/test/icon_tel.png" width=140 height=140/>
+            <label class="checkbox" for="checkbox{{index}}">
+                <input type="checkbox" value="" id="checkbox{{index}}" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                {{name}}
+            </label>
+        </div>
+
+        {{/each}}
+    </div>
+</script>
+<script type="text/html" id="N-single-input">
+    <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        {{#each list}}
+        <input type="text" id="input{{index}}" /> 
+        {{/each}}
+    </div>
+</script>
+<script type="text/html" id="N-multi-input">
+    <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        {{#each list}}
+        <label class="checkbox" for="input{{index}}">
+            {{name}}
+        </label>
+        <input type="text" id="input{{index}}" /> 
+        {{/each}}
+    </div>
+</script>
+<script type="text/html" id="N-textarea">
+    <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        {{#each list}}
+        <textarea id="checkbox{{index}}"></textarea> 
+        {{/each}}
+    </div>
+</script>
+<script type="text/html" id="N-sort">
+    <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        {{#each list}}
+        {{/each}}
+    </div>
+</script>
+<script type="text/html" id="N-score">
+    <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        {{#each list}}
+        <div class="score-area">
+            <span class="fui-star-2"></span>
+            <span class="fui-star-2"></span>
+            <span class="fui-star-2"></span>
+            <span class="fui-star-2"></span>
+            <span class="fui-star-2"></span>
+        </div>
+        {{/each}}
+    </div>
+</script>
+<script type="text/html" id="N-matrix-input">
+     <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    {{#each header}}
+                        <th>{{name}}</th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+            {{#each list}}
+            <tr>
+                <td>{{name}}</td>
+                {{#each sublist}}
+                <td>
+                    <input type="text" id="input{{index}}" />
+                </td>
+                {{/each}}
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</script>
+<script type="text/html" id="N-matrix-radio">
+     <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    {{#each header}}
+                        <th>{{name}}</th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+            {{#each list}}
+            <tr>
+                <td>{{name}}</td>
+                {{#each sublist}}
+                <td>
+                    <label class="radio" for="radio{{index}}">
+                        <input type="radio" name="optionsRadios1" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                        {{name}}
+                    </label>
+                </td>
+                {{/each}}
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</script>
+<script type="text/html" id="N-matrix-checkbox">
+     <div id="question{{id}}" class="clearfix">
+        <h4>{{des}}</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    {{#each header}}
+                        <th>{{name}}</th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+            {{#each list}}
+            <tr>
+                <td>{{name}}</td>
+                {{#each sublist}}
+                <td>
+                    <label class="checkbox" for="checkbox{{index}}">
+                        <input type="checkbox" name="optionsRadios1" value="" id="checkbox{{index}}" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                        {{name}}
+                    </label>
+                </td>
+                {{/each}}
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</script>
+
+
+
+<script>
+$(function() {
+    var data = [
+        {
+            id: '82828282800',
+            type: 'radio',
+            des: '单选题',
+            name: 'cccc',
+            list: [
+                {
+                    index: 0,
+                    name: '测试1'
+                },
+                {
+                    index: 1,
+                    name: '测试2'
+                }
+            ]
+        },
+        {
+            id: '82828282801',
+            type: 'checkbox',
+            des: '多选题',
+            name: 'cccc',
+            list: [
+                {
+                    index: 2,
+                    name: '测试1'
+                },
+                {
+                    index: 3,
+                    name: '测试2'
+                }
+            ]
+        },
+        {
+            id: '82828282802',
+            type: 'img-radio',
+            des: '图片单选题',
+            name: 'cccc',
+            list: [
+                {
+                    index: 4,
+                    name: '测试1'
+                },
+                {
+                    index: 5,
+                    name: '测试2'
+                }
+            ]
+        },
+        {
+            id: '82828282803',
+            type: 'img-checkbox',
+            des: '图片多选题',
+            name: 'cccc',
+            list: [
+                {
+                    index: 6,
+                    name: '测试1'
+                },
+                {
+                    index: 7,
+                    name: '测试2'
+                }
+            ]
+        },
+        {
+            id: '82828282804',
+            type: 'single-input',
+            des: '单行填空题',
+            name: 'cccc',
+            list: [
+                {
+                    index: 8,
+                    name: '测试1'
+                }
+            ]
+        },
+        {
+            id: '82828282805',
+            type: 'multi-input',
+            des: '多项填空题',
+            name: 'cccc',
+            list: [
+                {
+                    index: 9,
+                    name: '测试1'
+                },
+                {
+                    index: 10,
+                    name: '测试2'
+                }
+            ]
+        },
+        {
+            id: '82828282806',
+            type: 'textarea',
+            des: '多行填空题',
+            name: 'cccc',
+            list: [
+                {
+                    index: 11,
+                    name: '测试1'
+                }
+            ]
+        },
+        {
+            id: '82828282807',
+            type: 'sort',
+            des: '排序题',
+            name: 'cccc',
+            list: [
+                {
+                    index: 12,
+                    name: '测试1'
+                }
+            ]
+        },
+        {
+            id: '82828282807',
+            type: 'score',
+            des: '打分题',
+            name: 'cccc',
+            list: [
+                {
+                    index: 13,
+                    name: '测试1'
+                }
+            ]
+        },
+        {
+            id: '82828282808',
+            type: 'matrix-radio',
+            des: '矩阵单选',
+            name: 'cccc',
+            header: [
+                {
+                    name: '抬头1'
+                },
+                {
+                    name: '抬头2'
+                },
+                {
+                    name: '抬头3'
+                },
+            ],
+            list: [
+                {
+                    index: 17,
+                    name: '行1',
+                    sublist: [
+                        {
+                            index: 18,
+                            name: '测试1'
+                        },
+                        {
+                            index: 19,
+                            name: '测试2'
+                        },
+                        {
+                            index: 20,
+                            name: '测试3'
+                        },
+                    ]
+                },
+                {
+                    index: 17,
+                    name: '行2',
+                    sublist: [
+                        {
+                            index: 21,
+                            name: '测试1'
+                        },
+                        {
+                            index: 22,
+                            name: '测试2'
+                        },
+                        {
+                            index: 23,
+                            name: '测试3'
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            id: '82828282807',
+            type: 'matrix-input',
+            des: '矩阵输入框',
+            name: 'cccc',
+            header: [
+                {
+                    name: '抬头1'
+                },
+                {
+                    name: '抬头2'
+                },
+                {
+                    name: '抬头3'
+                },
+            ],
+            list: [
+                {
+                    index: 13,
+                    name: '行1',
+                    sublist: [
+                        {
+                            index: 14,
+                            name: '测试1'
+                        },
+                        {
+                            index: 15,
+                            name: '测试2'
+                        },
+                        {
+                            index: 16,
+                            name: '测试3'
+                        },
+                    ]
+                },
+                {
+                    index: 13,
+                    name: '行2',
+                    sublist: [
+                        {
+                            index: 14,
+                            name: '测试1'
+                        },
+                        {
+                            index: 15,
+                            name: '测试2'
+                        },
+                        {
+                            index: 16,
+                            name: '测试3'
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            id: '82828282809',
+            type: 'matrix-checkbox',
+            des: '矩阵多选',
+            name: 'cccc',
+            header: [
+                {
+                    name: '抬头1'
+                },
+                {
+                    name: '抬头2'
+                },
+                {
+                    name: '抬头3'
+                },
+            ],
+            list: [
+                {
+                    index: 17,
+                    name: '行1',
+                    sublist: [
+                        {
+                            index: 18,
+                            name: '测试1'
+                        },
+                        {
+                            index: 19,
+                            name: '测试2'
+                        },
+                        {
+                            index: 20,
+                            name: '测试3'
+                        },
+                    ]
+                },
+                {
+                    index: 17,
+                    name: '行2',
+                    sublist: [
+                        {
+                            index: 21,
+                            name: '测试1'
+                        },
+                        {
+                            index: 22,
+                            name: '测试2'
+                        },
+                        {
+                            index: 23,
+                            name: '测试3'
+                        },
+                    ]
+                },
+            ]
+        },
+
+
+
+    ];
+
+    /*页头*/
+    $('.J-pageheader').html('测试');
+    $('.J-pagedes').html('测试测试测试测试测试测试测试测试测试测试测试测试测试测试');
+
+
+
+    /*生成内容*/
+    $.each(data, function(index, value) {
+        var source = $('#N-' + value.type).html();
+        var template = Handlebars.compile(source);
+        var dom = $(template(value));
+        $('#N-base').append(dom);
+    });
+
+
+
+    
+});
+</script>
+</body>
+</html>

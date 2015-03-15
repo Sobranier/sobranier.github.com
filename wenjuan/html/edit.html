@@ -2,50 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>两个界面先写在一起</title>
+    <title>编辑页</title>
     <link rel='stylesheet' href='../stylesheets/vendor/bootstrap.css' />
     <link rel='stylesheet' href='../stylesheets/vendor/flat-ui.css' />
     <link rel='stylesheet' href='../stylesheets/vendor/font-awesome.css' />
     <link rel='stylesheet' href='../stylesheets/style.css' />
     <script src='../js/vendor/jquery.min.js'></script>
     <script src='../js/vendor/jquery-ui.min.js'></script>
-    <style>
-        .edit-leftwrapper {float:left;width:168px;}
-        .edit-rightwrapper {margin-left:180px;}
-
-        .draggnav, .sortnav{padding-left:0;list-style-type:none;background-color:#eee;}
-        .draggnav {padding:10px 20px;}
-        .draggnav li>span {display:inline-block;width:20px;margin-right:10px;}
-        .sortnav {padding:10px;}
-
-        .action-area>span{cursor:pointer;}
-        .img-area {float:left;margin-right:10px;margin-bottom:10px;width:150px;height:170px;border:1px solid #eee;}
-        .img-area img{
-            width:140px;height:140px;margin:0 auto;
-        }
-        .img-area .img-radio, .img-area .img-checkbox {
-            margin-left:68px;
-        }
-        .uploader {
-            position:relative;
-            border:1px dashed #eee;
-        }
-        .uploader input{position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            border: solid transparent;
-            opacity: .0;
-            filter: alpha(opacity= 0);cursor: pointer;}
-        .uploader .fui-image {
-            position:absolute;
-            display:block;width:18px;height:18px;
-            left:50%;top:50%;margin-left:-9px;margin-top:-9px;
-        }
-        
-    </style>
+    <script src='../js/vendor/handlebars-v3.0.0.js'></script>
 </head>
 <body>
 
@@ -68,7 +32,6 @@
                 <li data-change="true" data-type="info"><span class="fui-tag"></span>段落说明</li>
                 <li data-change="true" data-type="pagination"><span class="fui-clip"></span>分页</li>
             </ul>
-
         </div>
         <div class="edit-rightwrapper">
             <div class='panel panel-default'>
@@ -82,7 +45,6 @@
                 </div>
             </div>
             <ul class="sortnav" id="J-sortarea">
-
             </ul>
         </div>
     
@@ -246,7 +208,7 @@
 <script type="text/html" id="M-pannel">
     <div class='panel panel-default'>
         <div class='panel-heading'>
-            <span class="J-order">Q1</span>
+            <span class="J-order"></span>
             <input placeholder="填写标题"/>
             <div class="fr action-area">
                 <span class="fui-triangle-up"></span>    
@@ -264,7 +226,10 @@ $(function() {
     $('#J-sortarea').sortable({
         handle: ".panel-heading",
         cursor: "move",
-        revert: true
+        revert: true,
+        stop: function(event, ui){
+            resort('#J-sortarea');
+        }
     });
     $('#J-draggnav li').draggable({
         connectToSortable: '#J-sortarea',
@@ -274,26 +239,35 @@ $(function() {
         revert: 'invalid',
         stop: function(event, ui){
             rebuild('#J-sortarea');
+            resort('#J-sortarea');
         }
     });
     function rebuild(id) {
-        console.log($(id).children('li').length);
         $(id).children('li').each(function() {
-            if ($(this).attr('data-change') && $(this).attr('data-type')) {
-               console.log($(this).attr('data-type')); 
-               $(this).attr('data-change', false);
-               switchbuild($(this));
-            };
+            if ($(this).attr('data-type') && $(this).attr('data-change')) {
+                console.log($(this).attr('data-type')); 
+                $(this).attr('data-change', false);
+                switchbuild($(this));
+           }
+        });
+    }
+    function resort(id) {
+        var count = 1;
+        $(id).children('li').each(function() {
+            if ($(this).attr('data-type')) {
+                $(this).find('.J-order').html('Q' + count++);
+           }
         });
     }
     function switchbuild(node) {
-        var type = node.attr('data-type');
+        var type = node.attr('data-type'),
+            d = new Date().getTime();
+        node.attr('id', 'J-wj' + d);
         var pannel = $($('#M-pannel').html());
         pannel.find('.panel-body').html($('#M-' + type).html());
 
         node.html('');
         node.append(pannel);
-        
         node.css('width', '100%');
         node.css('height', '');
     }
