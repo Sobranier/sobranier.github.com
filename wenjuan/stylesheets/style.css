@@ -853,7 +853,7 @@
   float: left;
   width: 168px;
   position: fixed;
-  top: 0;
+  top: 52px;
 }
 
 /* line 22, ../sass/style.scss */
@@ -965,4 +965,10 @@
   top: 50%;
   margin-left: -9px;
   margin-top: -9px;
+}
+
+/* line 91, ../sass/style.scss */
+#N-base h4 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
 }
