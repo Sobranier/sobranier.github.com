@@ -936,13 +936,19 @@
 .score-area .score-area-right {
   margin-left: 200px;
 }
+/* line 67, ../sass/style.scss */
+.score-area .fui-cross-circle {
+  position: absolute;
+  top: 0;
+  left: 340px;
+}
 
-/* line 69, ../sass/style.scss */
+/* line 74, ../sass/style.scss */
 .uploader {
   position: relative;
   border: 1px dashed #eee;
 }
-/* line 72, ../sass/style.scss */
+/* line 77, ../sass/style.scss */
 .uploader input {
   position: absolute;
   top: 0;
@@ -955,7 +961,7 @@
   filter: alpha(opacity=0);
   cursor: pointer;
 }
-/* line 83, ../sass/style.scss */
+/* line 88, ../sass/style.scss */
 .uploader .fui-image {
   position: absolute;
   display: block;
@@ -967,7 +973,7 @@
   margin-top: -9px;
 }
 
-/* line 91, ../sass/style.scss */
+/* line 96, ../sass/style.scss */
 #N-base h4 {
   border-bottom: 1px solid #ccc;
   padding-bottom: 4px;
