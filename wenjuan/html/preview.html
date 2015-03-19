@@ -34,7 +34,7 @@
         <h4>{{des}}</h4>
         {{#each list}}
         <label class="radio" for="radio{{index}}">
-            <input type="radio" name="optionsRadios1" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+            <input type="radio" name="optionsRadios{{id}}" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
             {{name}}
         </label>
         {{/each}}
@@ -58,7 +58,7 @@
         <div class="img-area">
             <img src="../images/test/icon_tel.png" width=140 height=140/>
             <label class="radio" for="radio{{index}}">
-                <input type="radio" name="optionsRadios1" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                <input type="radio" name="optionsRadios{{id}}" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                 {{name}}
             </label>
         </div>
@@ -182,7 +182,7 @@
 <script type="text/html" id="N-matrix-checkbox">
      <div id="question{{id}}" class="clearfix">
         <h4>{{des}}</h4>
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th></th>
@@ -502,8 +502,8 @@ $(function() {
     ];
 
     /*页头*/
-    $('.J-pageheader').html('测试');
-    $('.J-pagedes').html('测试测试测试测试测试测试测试测试测试测试测试测试测试测试');
+    $('.J-pageheader').html('保险调查问卷');
+    $('.J-pagedes').html('本问卷调查是只为个人做学术调查提供数据及参考资料，望通过此问卷调查了解城镇居民参加医疗保险意愿及经济承受能力等相关情况。谢谢您的配合！');
 
 
 

@@ -39,14 +39,14 @@
             </ul>
         </div>
         <div class="edit-rightwrapper">
-            <div class='panel panel-default'>
+            <div class='panel panel-default J-pagetitle'>
                 <div class='panel-heading'>
                     <label>问卷标题</label>
-                    <input placeholder="填写标题"/>
+                    <input name="main_title" placeholder="填写标题" class="J-titlebind"/>
                 </div>
                 <div class='panel-body' style="height:100px;">
                     <label>问卷描述</label>
-                    <textarea placeholder="填写描述"></textarea>
+                    <textarea name="sub_title" placeholder="填写描述" class="J-titlebind"></textarea>
                 </div>
             </div>
             <ul class="sortnav" id="J-sortarea">
@@ -184,7 +184,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th></th>
+             <th></th>
                 <th><input type="text" placeholder="填写选项" value="选项一" /></th>
                 <th><input type="text" placeholder="填写选项" value="选项二" /></th>
             </tr>
@@ -243,6 +243,10 @@
                 <span class="fui-triangle-up"></span>    
                 <span class="fui-triangle-down"></span>    
                 <span class="fui-trash"></span>    
+                <label class="checkbox" style="width:60px;margin-top:20px;">
+                    <input type="checkbox" value="" data-toggle="checkbox" class="custom-checkbox J-must"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                    必答
+                </label>
             </div>
         </div>
        <div class='panel-body'>
@@ -321,13 +325,6 @@ $(function() {
         node.css('width', '100%');
         node.css('height', '');
 
-        // 标题处自动获取焦点
-        //node.find('.panel-heading input').focus();
-
-
-
-
-
         console.log('新添加项目:' + node.attr('data-type') + ' id:' + node.attr('id')); 
     }
 
@@ -338,7 +335,6 @@ $(function() {
             id = node.attr('id');
 
         node.insertBefore(node_prev);
-
         resort('#J-sortarea');
         console.log('------' + id + '向上调整');
     });
@@ -350,7 +346,6 @@ $(function() {
             id = node.attr('id');
 
         node.insertAfter(node_next);
-
         resort('#J-sortarea');
         console.log('------' + id + '向下调整');
     });
@@ -363,8 +358,15 @@ $(function() {
         resort('#J-sortarea');
         console.log('------' + id + '删除');
     });
+    $("#J-sortarea").delegate(".J-must","click",function(){
+        var node = $(this).parents('li'),
+            id = node.attr('id');
+        console.log('------' + id + '必答调整' + $(this).prop('checked'));
+    });
 
-
+    /*
+        修改input等 
+    */
     $('#J-sortarea').on('focusin focusout', 'input[type="text"]', function(event){
         var node = $(this).parents('li');
         var id = node.attr('id');
@@ -379,6 +381,19 @@ $(function() {
         }
     });
 
+    $('.J-pagetitle').on('focusin focusout', '.J-titlebind', function(event){
+        if(event.type === 'focusin'){
+            $(this).css('background-color', 'yellow');
+            console.log('====== 进入');
+        }else if(event.type === 'focusout'){
+            $(this).css('background-color', 'white');
+            console.log('====== 离开 ====== 修改 "' + $(this).attr('name') +  '" 值为 "' + $(this).val() + '"');
+        }
+    });
+
+    /*
+        设置添加
+    */
     $("#J-sortarea").delegate(".J-plus","click",function(){
         var node = $(this).parents('li'),
             id = node.attr('id');
@@ -389,9 +404,11 @@ $(function() {
             if ($(this).attr('data-type') == 'line') {
                 table.find('tbody').append(table.find('tbody tr:last-child').clone());
                 if (table.find('tbody tr:last-child').find('.fui-cross-circle').length == 0) {
-                    table.find('tbody tr:last-child').append($("<span class='fui-cross-circle J-minus'></span>"));
+                    //table.find('tbody tr:last-child').append($("<span class='fui-cross-circle J-minus'></span>"));
                 }
             } else {
+                table.find('thead tr').append($('<th><input type="text" placeholder="填写选项" value="新选项" /></th>'));
+                table.find('tbody tr').append(table.find('tbody tr:last-child td:last-child').clone());
         
             }
         
@@ -406,6 +423,9 @@ $(function() {
         console.log('++++++ ' + id + ' 添加项目');
     });
 
+    /*
+        设置必答题
+    */
     $("#J-sortarea").delegate(".J-minus","click",function(){
         var node = $(this).parents('li'),
         id = node.attr('id');
