@@ -10,6 +10,10 @@
     <script src='../js/vendor/jquery.min.js'></script>
     <script src='../js/vendor/jquery-ui.min.js'></script>
     <script src='../js/vendor/handlebars-v3.0.0.js'></script>
+
+    <style>
+        .fui-star-2-grey {color:grey;}
+    </style>
 </head>
 <body>
 <div class="container">
@@ -24,17 +28,17 @@
             <h1 class="text-center J-pageheader"></h1>
             <p class="J-pagedes"></p>
         </form>
-        <button class="btn btn-primary pull-right">
+        <button class="btn btn-primary pull-right J-pull">
             提交
         </button>
     </div>
 </div>
 <script type="text/html" id="N-radio">
     <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         {{#each list}}
         <label class="radio" for="radio{{index}}">
-            <input type="radio" name="optionsRadios{{id}}" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+            <input type="radio" name="radio{{id}}" value={{index}} id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
             {{name}}
         </label>
         {{/each}}
@@ -42,10 +46,10 @@
 </script>
 <script type="text/html" id="N-checkbox">
     <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         {{#each list}}
         <label class="checkbox" for="checkbox{{index}}">
-            <input type="checkbox" value="" id="checkbox{{index}}" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+            <input type="checkbox" name="checkbox{{id}}" value={{index}} id="checkbox{{index}}" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
             {{name}}
         </label>
         {{/each}}
@@ -53,12 +57,12 @@
 </script>
 <script type="text/html" id="N-img-radio">
     <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         {{#each list}}
         <div class="img-area">
             <img src="../images/test/icon_tel.png" width=140 height=140/>
             <label class="radio" for="radio{{index}}">
-                <input type="radio" name="optionsRadios{{id}}" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                <input type="radio" name="img-radio{{id}}" value={{index}} id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                 {{name}}
             </label>
         </div>
@@ -67,12 +71,12 @@
 </script>
 <script type="text/html" id="N-img-checkbox">
     <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         {{#each list}}
         <div class="img-area">
             <img src="../images/test/icon_tel.png" width=140 height=140/>
             <label class="checkbox" for="checkbox{{index}}">
-                <input type="checkbox" value="" id="checkbox{{index}}" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                <input type="checkbox" name="img-checkbox{{id}}" value={{index}} id="checkbox{{index}}" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                 {{name}}
             </label>
         </div>
@@ -82,48 +86,49 @@
 </script>
 <script type="text/html" id="N-single-input">
     <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         {{#each list}}
-        <input type="text" id="input{{index}}" /> 
+        <input type="text" name="single-input{{id}}" id="input{{index}}" /> 
         {{/each}}
     </div>
 </script>
 <script type="text/html" id="N-multi-input">
     <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         {{#each list}}
         <label class="checkbox" for="input{{index}}">
             {{name}}
         </label>
-        <input type="text" id="input{{index}}" /> 
+        <input type="text" name="multi-input{{id}}" /> 
         {{/each}}
     </div>
 </script>
 <script type="text/html" id="N-textarea">
     <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         {{#each list}}
-        <textarea id="checkbox{{index}}"></textarea> 
+        <textarea name="textarea{{id}}"></textarea> 
         {{/each}}
     </div>
 </script>
 <script type="text/html" id="N-score">
     <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         {{#each list}}
         <div class="score-area">
-            <span class="fui-star-2"></span>
-            <span class="fui-star-2"></span>
-            <span class="fui-star-2"></span>
-            <span class="fui-star-2"></span>
-            <span class="fui-star-2"></span>
+            <span class="fui-star-2" data-type="1"></span>
+            <span class="fui-star-2" data-type="2"></span>
+            <span class="fui-star-2" data-type="3"></span>
+            <span class="fui-star-2" data-type="4"></span>
+            <span class="fui-star-2" data-type="5"></span>
         </div>
+        <div><input type="aee" name="score{{id}}" value='5' disabled='true'/>分</div>
         {{/each}}
     </div>
 </script>
 <script type="text/html" id="N-matrix-input">
      <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
 
         <table class="table table-bordered">
             <thead>
@@ -140,7 +145,7 @@
                 <td>{{name}}</td>
                 {{#each sublist}}
                 <td>
-                    <input type="text" id="input{{index}}" />
+                    <input type="text" name="martrix-input{{id}}{{id2}}{{index}}" />
                 </td>
                 {{/each}}
             </tr>
@@ -151,7 +156,7 @@
 </script>
 <script type="text/html" id="N-matrix-radio">
      <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -168,7 +173,7 @@
                 {{#each sublist}}
                 <td>
                     <label class="radio" for="radio{{index}}">
-                        <input type="radio" name="optionsRadios1" value="" id="radio{{index}}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                        <input type="radio" name="martrix-radio{{id}}{{id2}}" value={{index}} data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                         {{name}}
                     </label>
                 </td>
@@ -181,7 +186,7 @@
 </script>
 <script type="text/html" id="N-matrix-checkbox">
      <div id="question{{id}}" class="clearfix">
-        <h4>{{des}}</h4>
+        <h4>{{des}}{{#if must}}<b class="pull-right">必答</b>{{/if}}</h4>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -198,7 +203,7 @@
                 {{#each sublist}}
                 <td>
                     <label class="checkbox" for="checkbox{{index}}">
-                        <input type="checkbox" name="optionsRadios1" value="" id="checkbox{{index}}" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                        <input type="checkbox" name="martrix-checkbox{{id}}{{id2}}" value={{index}} data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                         {{name}}
                     </label>
                 </td>
@@ -220,12 +225,15 @@ $(function() {
             type: 'radio',
             des: '单选题',
             name: 'cccc',
+            must: true,
             list: [
                 {
+                    id: '82828282800',
                     index: 0,
                     name: '测试1'
                 },
                 {
+                    id: '82828282800',
                     index: 1,
                     name: '测试2'
                 }
@@ -238,10 +246,12 @@ $(function() {
             name: 'cccc',
             list: [
                 {
+                    id: '82828282801',
                     index: 2,
                     name: '测试1'
                 },
                 {
+                    id: '82828282801',
                     index: 3,
                     name: '测试2'
                 }
@@ -254,10 +264,12 @@ $(function() {
             name: 'cccc',
             list: [
                 {
+                    id: '82828282802',
                     index: 4,
                     name: '测试1'
                 },
                 {
+                    id: '82828282802',
                     index: 5,
                     name: '测试2'
                 }
@@ -268,12 +280,15 @@ $(function() {
             type: 'img-checkbox',
             des: '图片多选题',
             name: 'cccc',
+            must: true,
             list: [
                 {
+                    id: '82828282803',
                     index: 6,
                     name: '测试1'
                 },
                 {
+                    id: '82828282803',
                     index: 7,
                     name: '测试2'
                 }
@@ -286,6 +301,7 @@ $(function() {
             name: 'cccc',
             list: [
                 {
+                    id: '82828282804',
                     index: 8,
                     name: '测试1'
                 }
@@ -298,10 +314,14 @@ $(function() {
             name: 'cccc',
             list: [
                 {
+                    id: '82828282805',
+                    id2: '112121212',
                     index: 9,
                     name: '测试1'
                 },
                 {
+                    id: '82828282805',
+                    id2: '11212122',
                     index: 10,
                     name: '测试2'
                 }
@@ -314,6 +334,7 @@ $(function() {
             name: 'cccc',
             list: [
                 {
+                    id: '82828282806',
                     index: 11,
                     name: '测试1'
                 }
@@ -324,8 +345,10 @@ $(function() {
             type: 'score',
             des: '打分题',
             name: 'cccc',
+            must: true,
             list: [
                 {
+                    id: '82828282807',
                     index: 13,
                     name: '测试1'
                 }
@@ -344,6 +367,8 @@ $(function() {
                     name: '抬头2'
                 },
                 {
+                    id: '82828282808',
+                    id2: '1212111113',
                     name: '抬头3'
                 },
             ],
@@ -353,14 +378,20 @@ $(function() {
                     name: '行1',
                     sublist: [
                         {
+                            id: '82828282808',
+                            id2: '1212111112',
                             index: 18,
                             name: '测试1'
                         },
                         {
+                            id: '82828282808',
+                            id2: '1212111112',
                             index: 19,
                             name: '测试2'
                         },
                         {
+                            id: '82828282808',
+                            id2: '1212111112',
                             index: 20,
                             name: '测试3'
                         },
@@ -371,14 +402,20 @@ $(function() {
                     name: '行2',
                     sublist: [
                         {
+                            id: '82828282808',
+                            id2: '1212111113',
                             index: 21,
                             name: '测试1'
                         },
                         {
+                            id: '82828282808',
+                            id2: '1212111113',
                             index: 22,
                             name: '测试2'
                         },
                         {
+                            id: '82828282808',
+                            id2: '1212111114',
                             index: 23,
                             name: '测试3'
                         },
@@ -408,14 +445,20 @@ $(function() {
                     name: '行1',
                     sublist: [
                         {
+                            id: '82828282807',
+                            id2: '1212111112',
                             index: 14,
                             name: '测试1'
                         },
                         {
+                            id: '82828282807',
+                            id2: '1212111112',
                             index: 15,
                             name: '测试2'
                         },
                         {
+                            id: '82828282807',
+                            id2: '1212111112',
                             index: 16,
                             name: '测试3'
                         },
@@ -426,14 +469,20 @@ $(function() {
                     name: '行2',
                     sublist: [
                         {
+                            id: '82828282807',
+                            id2: '1212111113',
                             index: 14,
                             name: '测试1'
                         },
                         {
+                            id: '82828282807',
+                            id2: '1212111113',
                             index: 15,
                             name: '测试2'
                         },
                         {
+                            id: '82828282807',
+                            id2: '1212111113',
                             index: 16,
                             name: '测试3'
                         },
@@ -463,14 +512,20 @@ $(function() {
                     name: '行1',
                     sublist: [
                         {
+                            id: '82828282809',
+                            id2: '1212111112',
                             index: 18,
                             name: '测试1'
                         },
                         {
+                            id: '82828282809',
+                            id2: '1212111112',
                             index: 19,
                             name: '测试2'
                         },
                         {
+                            id: '82828282809',
+                            id2: '1212111112',
                             index: 20,
                             name: '测试3'
                         },
@@ -481,14 +536,20 @@ $(function() {
                     name: '行2',
                     sublist: [
                         {
+                            id: '82828282809',
+                            id2: '1212111112',
                             index: 21,
                             name: '测试1'
                         },
                         {
+                            id: '82828282809',
+                            id2: '1212111113',
                             index: 22,
                             name: '测试2'
                         },
                         {
+                            id: '82828282809',
+                            id2: '1212111113',
                             index: 23,
                             name: '测试3'
                         },
@@ -514,6 +575,17 @@ $(function() {
         var dom = $(template(value));
         $('#N-base').append(dom);
     });
+
+    $('.J-pull').click(function(){
+        console.log($('#N-base').serialize());
+    });
+
+    $(".score-area").delegate(".fui-star-2","click",function(){
+        $(this).nextAll().addClass("fui-star-2-grey");
+        $(this).removeClass("fui-star-2-grey");
+        $(this).prevAll().removeClass("fui-star-2-grey");
+    });
+
 
 
 
